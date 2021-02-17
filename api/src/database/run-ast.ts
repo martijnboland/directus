@@ -162,7 +162,7 @@ function getDBQuery(
 	// Nested filters use joins to filter on the parent level, to prevent duplicate
 	// parents, we group the query by the current tables primary key (which is unique)
 	// ref #3798
-	dbQuery.groupBy(`${table}.${primaryKeyField}`);
+	//dbQuery.distinct();
 
 	return dbQuery;
 }
