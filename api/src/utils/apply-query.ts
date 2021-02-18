@@ -177,20 +177,14 @@ export function applyFilter(schema: SchemaOverview, rootQuery: QueryBuilder, roo
 				let value = compareValue;
 				if (typeof value === 'string') value = value.split(',');
 
-				let flattened = [].concat(...value);
-				let flattenedUnique = [...new Set(flattened)];
-
-				dbQuery[logical].whereIn(key, flattenedUnique as string[]);
+				dbQuery[logical].whereIn(key, value as string[]);
 			}
 
 			if (operator === '_nin') {
 				let value = compareValue;
 				if (typeof value === 'string') value = value.split(',');
 
-				let flattened = [].concat(...value);
-				let flattenedUnique = [...new Set(flattened)];
-
-				dbQuery[logical].whereNotIn(key, flattenedUnique as string[]);
+				dbQuery[logical].whereNotIn(key, value as string[]);
 			}
 
 			if (operator === '_null' || (operator === '_nnull' && compareValue === false)) {
